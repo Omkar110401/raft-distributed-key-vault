@@ -1,0 +1,45 @@
+### Gradle ###
+.gradle/
+build/
+
+### Gradle Wrapper (DO NOT IGNORE) ###
+!gradle/
+!gradle/wrapper/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+!gradlew
+!gradlew.bat
+
+### IDEs ###
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+.sts4-cache/
+.factorypath
+.springBeans
+.apt_generated
+bin/
+out/
+
+### OS ###
+.DS_Store
+
+### Environment / Secrets ###
+.env
+application-local.yml
+application-*.yml
+
+### Logs ###
+*.log
+*.sh
+.csv
+/test_reports
+/TEST_INVENTORY.md
+/test_phase_3_1.py
+/TESTING_SUMMARY.md
+/TESTING.md
+/README_TESTING.txt
+/COMPLETION_SUMMARY.txt
