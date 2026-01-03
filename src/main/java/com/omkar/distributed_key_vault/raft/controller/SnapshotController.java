@@ -140,7 +140,7 @@ public class SnapshotController {
                     "snapshot-" + snapshot.lastIncludedIndex);
                 
                 if (saved) {
-                    log.info("✓ Snapshot created and persisted: index {}", 
+                    log.info("Snapshot created and persisted: index {}", 
                         snapshot.lastIncludedIndex);
                     
                     return ResponseEntity.ok(new SnapshotCreateResponse(
@@ -179,7 +179,7 @@ public class SnapshotController {
             int logSizeAfter = raftState.getLog().size();
             int entriesRemoved = logSizeBefore - logSizeAfter;
             
-            log.info("✓ Log compacted: removed {} entries", entriesRemoved);
+            log.info("Log compacted: removed {} entries", entriesRemoved);
             
             return ResponseEntity.ok(new CompactionResponse(
                 "Log compacted successfully",
@@ -225,7 +225,7 @@ public class SnapshotController {
             boolean deleted = persistenceLayer.deleteSnapshot(snapshotName);
             
             if (deleted) {
-                log.info("✓ Snapshot deleted: {}", snapshotName);
+                log.info("Snapshot deleted: {}", snapshotName);
                 return ResponseEntity.ok(new DeleteResponse(
                     "Snapshot deleted successfully",
                     snapshotName,
@@ -258,7 +258,7 @@ public class SnapshotController {
             snapshotManager.reset();
             persistenceLayer.reset();
             
-            log.info("✓ All snapshots and persistence state reset");
+            log.info("All snapshots and persistence state reset");
             
             return ResponseEntity.ok(new ResetResponse(
                 "All snapshots and persistence state reset successfully",

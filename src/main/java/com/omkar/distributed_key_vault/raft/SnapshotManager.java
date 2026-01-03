@@ -109,7 +109,7 @@ public class SnapshotManager {
             totalSnapshotsCreated++;
             totalSnapshotBytes += snapshot.getSize();
             
-            log.warn("📸 SNAPSHOT: Created snapshot at index {} (term {}) - {} entries, {} bytes",
+            log.warn("SNAPSHOT: Created snapshot at index {} (term {}) - {} entries, {} bytes",
                 lastIndex, currentTerm, recentEntries.size(), snapshot.getSize());
             
             return snapshot;
@@ -144,7 +144,7 @@ public class SnapshotManager {
             }
             
             // Restore state machine data
-            log.info("📥 SNAPSHOT: Loading snapshot at index {} (term {})", 
+            log.info("SNAPSHOT: Loading snapshot at index {} (term {})", 
                 snapshot.lastIncludedIndex, snapshot.lastIncludedTerm);
             
             // Restore recent log entries
@@ -154,7 +154,7 @@ public class SnapshotManager {
             latestSnapshot = snapshot;
             totalSnapshotsLoaded++;
             
-            log.warn("✓ SNAPSHOT: Loaded snapshot with {} entries, {} state entries",
+            log.warn("SNAPSHOT: Loaded snapshot with {} entries, {} state entries",
                 snapshot.recentEntries.size(), snapshot.data.size());
             
         } finally {
@@ -247,7 +247,7 @@ public class SnapshotManager {
                 loadSnapshot(snapshot);
                 compactLog(lastIncludedIndex);
                 
-                log.warn("✓ SNAPSHOT: Installed snapshot at index {} from leader", lastIncludedIndex);
+                log.warn("SNAPSHOT: Installed snapshot at index {} from leader", lastIncludedIndex);
                 return true;
             }
             

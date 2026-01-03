@@ -33,13 +33,13 @@ public class SnapshotRecoveryService {
     @PostConstruct
     public void recoverFromSnapshot() {
         try {
-            log.info("🔄 Starting snapshot recovery...");
+            log.info("Starting snapshot recovery...");
             
             // Try to load latest snapshot
             Snapshot latest = snapshotManager.getLatestSnapshot();
             
             if (latest != null) {
-                log.info("📥 Found snapshot at index {}, restoring state...", latest.lastIncludedIndex);
+                log.info("Found snapshot at index {}, restoring state...", latest.lastIncludedIndex);
                 
                 // Restore Raft state
                 snapshotManager.loadSnapshot(latest);
@@ -48,14 +48,14 @@ public class SnapshotRecoveryService {
                 restoreStateData(latest.data);
                 
                 // Log recovery
-                log.warn("✓ Recovery complete: restored from snapshot at index {} (term {})",
+                log.warn("Recovery complete: restored from snapshot at index {} (term {})",
                     latest.lastIncludedIndex, latest.lastIncludedTerm);
                 
                 // Print recovery stats
                 printRecoveryStats(latest);
                 
             } else {
-                log.info("ℹ️  No snapshot found - starting fresh");
+                log.info("No snapshot found - starting fresh");
                 raftState.becomeFollower(0);
             }
             
@@ -63,7 +63,7 @@ public class SnapshotRecoveryService {
             raftState.becomeFollower(raftState.getCurrentTerm().get());
             
         } catch (Exception e) {
-            log.error("❌ Error during snapshot recovery", e);
+            log.error("Error during snapshot recovery", e);
             // Continue anyway - will catch up through replication
             raftState.becomeFollower(0);
         }
@@ -95,21 +95,18 @@ public class SnapshotRecoveryService {
         SnapshotManager.SnapshotMetrics metrics = snapshotManager.getMetrics();
         PersistenceLayer.PersistenceMetrics persistenceMetrics = persistenceLayer.getMetrics();
         
-        log.info("╔════════════════════════════════════════╗");
-        log.info("║     SNAPSHOT RECOVERY STATISTICS      ║");
-        log.info("╠════════════════════════════════════════╣");
-        log.info("║ Snapshot Index       : {}", String.format("%-22d║", snapshot.lastIncludedIndex));
-        log.info("║ Snapshot Term        : {}", String.format("%-22d║", snapshot.lastIncludedTerm));
-        log.info("║ State Data Entries   : {}", String.format("%-22d║", snapshot.data.size()));
-        log.info("║ Recent Log Entries   : {}", String.format("%-22d║", snapshot.recentEntries.size()));
-        log.info("║ Snapshot Size (KB)   : {}", String.format("%-22d║", snapshot.getSize() / 1024));
-        log.info("║────────────────────────────────────────║");
-        log.info("║ Snapshots Created    : {}", String.format("%-22d║", metrics.totalSnapshotsCreated));
-        log.info("║ Snapshots Loaded     : {}", String.format("%-22d║", metrics.totalSnapshotsLoaded));
-        log.info("║ Entries Compacted    : {}", String.format("%-22d║", metrics.totalLogEntriesCompacted));
-        log.info("║ Persistence Saves    : {}", String.format("%-22d║", persistenceMetrics.totalSaved));
-        log.info("║ Persistence Success  : {}%", String.format("%-21d║", persistenceMetrics.successRate));
-        log.info("╚════════════════════════════════════════╝");
+        log.info("--- SNAPSHOT RECOVERY STATISTICS ---");
+        log.info("Snapshot Index       : {}", snapshot.lastIncludedIndex);
+        log.info("Snapshot Term        : {}", snapshot.lastIncludedTerm);
+        log.info("State Data Entries   : {}", snapshot.data.size());
+        log.info("Recent Log Entries   : {}", snapshot.recentEntries.size());
+        log.info("Snapshot Size (KB)   : {}", snapshot.getSize() / 1024);
+        log.info("--- Metrics ---");
+        log.info("Snapshots Created    : {}", metrics.totalSnapshotsCreated);
+        log.info("Snapshots Loaded     : {}", metrics.totalSnapshotsLoaded);
+        log.info("Entries Compacted    : {}", metrics.totalLogEntriesCompacted);
+        log.info("Persistence Saves    : {}", persistenceMetrics.totalSaved);
+        log.info("Persistence Success  : {}%", persistenceMetrics.successRate);
     }
     
     /**

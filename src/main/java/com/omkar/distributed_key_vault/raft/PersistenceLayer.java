@@ -87,7 +87,7 @@ public class PersistenceLayer {
             totalSaved++;
             totalBytesCompressed += snapshotData.length;
             
-            log.info("✓ Snapshot saved: {} ({} bytes)", snapshotPath.getFileName(), snapshotData.length);
+            log.info("Snapshot saved: {} ({} bytes)", snapshotPath.getFileName(), snapshotData.length);
             return true;
             
         } catch (Exception e) {
@@ -142,7 +142,7 @@ public class PersistenceLayer {
             
             totalLoaded++;
             
-            log.info("✓ Snapshot loaded: {} ({} entries)", snapshotPath.getFileName(), stateData != null ? stateData.size() : 0);
+            log.info("Snapshot loaded: {} ({} entries)", snapshotPath.getFileName(), stateData != null ? stateData.size() : 0);
             return snapshot;
             
         } catch (Exception e) {
@@ -215,7 +215,7 @@ public class PersistenceLayer {
             Files.write(statePath, stateData,
                 StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
             
-            log.info("✓ State saved: {} ({} entries)", statePath.getFileName(), state.size());
+            log.info("State saved: {} ({} entries)", statePath.getFileName(), state.size());
             return true;
             
         } catch (Exception e) {
@@ -360,7 +360,7 @@ public class PersistenceLayer {
                 String snapshotJson = new String(backupData);
                 Snapshot snapshot = objectMapper.readValue(snapshotJson, Snapshot.class);
                 
-                log.warn("✓ Recovered snapshot from backup: v{}", latestVersion);
+                log.warn("Recovered snapshot from backup: v{}", latestVersion);
                 return snapshot;
             }
             

@@ -63,7 +63,7 @@ public class ChaosMonkey {
         recoverTime.put(nodeId, System.currentTimeMillis() + durationMs);
         totalCrashes++;
         
-        log.warn("⚠️ CHAOS: Node {} CRASHED (will recover in {}ms)", nodeId, durationMs);
+        log.warn("CHAOS: Node {} crashed - will recover in {}ms", nodeId, durationMs);
     }
     
     /**
@@ -77,7 +77,7 @@ public class ChaosMonkey {
             totalRecoveries++;
             
             long crashDuration = System.currentTimeMillis() - crashStartTime.getOrDefault(nodeId, System.currentTimeMillis());
-            log.info("✓ CHAOS: Node {} RECOVERED (was down for {}ms)", nodeId, crashDuration);
+            log.info("CHAOS: Node {} recovered - was down for {}ms", nodeId, crashDuration);
         }
     }
     
@@ -108,7 +108,7 @@ public class ChaosMonkey {
         networkPartitioned = true;
         partitionGroup.addAll(Arrays.asList(group1.split(",")));
         
-        log.warn("⚠️ CHAOS: NETWORK PARTITION created");
+        log.warn("CHAOS: Network partition created");
         log.warn("  Group A (can communicate): {}", group1);
         log.warn("  Group B (isolated): {}", group2);
     }
@@ -120,7 +120,7 @@ public class ChaosMonkey {
         if (networkPartitioned) {
             networkPartitioned = false;
             partitionGroup.clear();
-            log.info("✓ CHAOS: NETWORK PARTITION healed");
+            log.info("CHAOS: Network partition healed");
         }
     }
     
@@ -169,7 +169,7 @@ public class ChaosMonkey {
             throw new IllegalArgumentException("Rate must be 0-100");
         }
         this.packetDropRate = rate;
-        log.warn("⚠️ CHAOS: Packet drop rate set to {}%", rate);
+        log.warn("CHAOS: Packet drop rate set to {}%", rate);
     }
     
     /**
@@ -191,7 +191,7 @@ public class ChaosMonkey {
      */
     public void setLatencyJitter(int jitterMs) {
         this.latencyJitterMs = jitterMs;
-        log.warn("⚠️ CHAOS: Latency jitter set to {}ms", jitterMs);
+        log.warn("CHAOS: Latency jitter set to {}ms", jitterMs);
     }
     
     // ============ DEGRADATION SCENARIOS ============
@@ -201,7 +201,7 @@ public class ChaosMonkey {
      */
     public void degradeNode(String nodeId) {
         nodeFailureState.put(nodeId, NodeFailureState.DEGRADED);
-        log.warn("⚠️ CHAOS: Node {} DEGRADED (slow responses)", nodeId);
+        log.warn("CHAOS: Node {} degraded - slow responses", nodeId);
     }
     
     /**
@@ -209,7 +209,7 @@ public class ChaosMonkey {
      */
     public void restoreNode(String nodeId) {
         nodeFailureState.put(nodeId, NodeFailureState.HEALTHY);
-        log.info("✓ CHAOS: Node {} RESTORED", nodeId);
+        log.info("CHAOS: Node {} restored", nodeId);
     }
     
     /**
@@ -257,7 +257,7 @@ public class ChaosMonkey {
         packetDropRate = 0;
         latencyJitterMs = 0;
         
-        log.info("✓ CHAOS: All chaos reset - cluster returned to healthy state");
+        log.info("CHAOS: All chaos reset - cluster returned to healthy state");
     }
     
     // ============ METRICS ============
