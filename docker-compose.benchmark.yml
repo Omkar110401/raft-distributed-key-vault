@@ -1,0 +1,59 @@
+services:
+  node1:
+    build: .
+    environment:
+      - NODE_ID=1
+      - SERVER_PORT=8080
+      - NODE1_HOST=node1
+      - NODE1_PORT=8080
+      - NODE2_HOST=node2
+      - NODE2_PORT=8081
+      - NODE3_HOST=node3
+      - NODE3_PORT=8082
+    ports:
+      - "8080:8080"
+  node2:
+    build: .
+    environment:
+      - NODE_ID=2
+      - SERVER_PORT=8081
+      - NODE1_HOST=node1
+      - NODE1_PORT=8080
+      - NODE2_HOST=node2
+      - NODE2_PORT=8081
+      - NODE3_HOST=node3
+      - NODE3_PORT=8082
+    ports:
+      - "8081:8081"
+  node3:
+    build: .
+    environment:
+      - NODE_ID=3
+      - SERVER_PORT=8082
+      - NODE1_HOST=node1
+      - NODE1_PORT=8080
+      - NODE2_HOST=node2
+      - NODE2_PORT=8081
+      - NODE3_HOST=node3
+      - NODE3_PORT=8082
+    ports:
+      - "8082:8082"
+
+  runner:
+    build:
+      context: .
+      dockerfile: benchmarks/Dockerfile
+    depends_on:
+      - node1
+      - node2
+      - node3
+    environment:
+      - TARGET_NODE=http://node1:8080
+    # mount results to host for easy access
+    volumes:
+      - ./benchmarks/results:/bench/results
+    # runner will execute the sweep and exit
+
+networks:
+  default:
+    driver: bridge

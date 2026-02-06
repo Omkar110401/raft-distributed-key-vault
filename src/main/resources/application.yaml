@@ -9,8 +9,14 @@ node:
   node-id: ${NODE_ID:node-1}
   all-nodes:
     - id: node-1
-      url: http://localhost:8080
+      url: http://${NODE1_HOST:localhost}:${NODE1_PORT:8080}
     - id: node-2
-      url: http://localhost:8081
+      url: http://${NODE2_HOST:localhost}:${NODE2_PORT:8081}
     - id: node-3
-      url: http://localhost:8082
+      url: http://${NODE3_HOST:localhost}:${NODE3_PORT:8082}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
