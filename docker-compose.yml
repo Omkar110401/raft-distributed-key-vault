@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  node1:
+    build: .
+    environment:
+      - NODE_ID=1
+      - SERVER_PORT=8080
+    ports:
+      - "8080:8080"
+  node2:
+    build: .
+    environment:
+      - NODE_ID=2
+      - SERVER_PORT=8081
+    ports:
+      - "8081:8081"
+  node3:
+    build: .
+    environment:
+      - NODE_ID=3
+      - SERVER_PORT=8082
+    ports:
+      - "8082:8082"
+networks:
+  default:
+    driver: bridge
