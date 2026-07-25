@@ -1,0 +1,2 @@
+scenario,totalRequests,throughput,avgLatencyMs,p99LatencyMs,maxLatencyMs,memoryUsedBytes
+RAMP_UP,99,9.89,10.41,16.39,16.39,0

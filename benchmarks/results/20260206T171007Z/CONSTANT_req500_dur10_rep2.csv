@@ -1,0 +1,2 @@
+scenario,totalRequests,throughput,avgLatencyMs,p99LatencyMs,maxLatencyMs,memoryUsedBytes
+CONSTANT,500,43.02,11.32,18.12,18.65,0

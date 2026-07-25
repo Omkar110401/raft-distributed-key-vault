@@ -34,12 +34,8 @@ application-*.yml
 
 ### Logs ###
 *.log
-*.sh
 .csv
 /test_reports
-/TEST_INVENTORY.md
-/test_phase_3_1.py
-/TESTING_SUMMARY.md
-/TESTING.md
-/README_TESTING.txt
-/COMPLETION_SUMMARY.txt
+
+### Generated files (safe to ignore) ###
+/data/

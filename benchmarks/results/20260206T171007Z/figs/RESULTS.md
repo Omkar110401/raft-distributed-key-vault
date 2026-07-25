@@ -1,0 +1,11 @@
+
+## Percentiles per scenario and request group
+
+## Percentiles per scenario and request group
+| scenario   | request_group   |   p50_ms |   p90_ms |   p95_ms |   p99_ms |
+|:-----------|:----------------|---------:|---------:|---------:|---------:|
+| CONSTANT   | req500          |   11.527 |   16.12  |   17.206 |   18.374 |
+| BURST      | req500          |   10.998 |   15.03  |   15.846 |   17.506 |
+| BURST      | req100          |   10.604 |   14.917 |   15.59  |   17.27  |
+| CONSTANT   | req100          |   11.467 |   15.978 |   17.013 |   18.257 |
+| RAMP       | UP              |   10.827 |   14.905 |   15.52  |   17.187 |

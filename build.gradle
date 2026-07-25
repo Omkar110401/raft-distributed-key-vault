@@ -5,8 +5,8 @@ plugins {
 }
 
 group = 'com.omkar'
-version = '0.0.1-SNAPSHOT'
-description = 'A distributed, fault-tolerant key vault with strong consistency, leader election, and secure key replication'
+version = '1.0.0'
+description = 'Raft consensus algorithm implementation with distributed key-value store, chaos testing, and empirical analysis'
 
 java {
 	toolchain {
