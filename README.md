@@ -298,27 +298,6 @@ done
 rm -rf data/
 ```
 
-## License
-
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
-
-## Author
-
-**Omkar Joshi**  
-[GitHub](https://github.com/Omkar110401) | [LinkedIn](https://linkedin.com/in/omkarcodes)
-
-## Citation
-
-If you use this project in academic research, please cite:
-
-```bibtex
-@software{joshi2026raft,
-  title={Raft Distributed Key Vault: An Empirical Study},
-  author={Joshi, Omkar},
-  year={2026},
-  url={https://github.com/Omkar110401/raft-distributed-key-vault}
-}
-```
 
 ## Support
 
@@ -326,9 +305,3 @@ Have questions or issues?
 - Check [TESTING.md](TESTING.md) for detailed testing guide
 - Review [CONTRIBUTING.md](CONTRIBUTING.md) for development setup
 - Open an issue on [GitHub](https://github.com/Omkar110401/raft-distributed-key-vault/issues)
-
----
-
-**Status**: Production-ready for learning and research  
-**Last Updated**: July 2026  
-**Current Phase**: 3.3 - Failure Injection Complete
